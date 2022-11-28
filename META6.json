@@ -1,0 +1,35 @@
+{
+  "name": "Proc::ZMQed",
+  "description": "Proc::ZMQed provides external evaluators (Mathematica, Python, R, etc.) via ZMQ.",
+  "version": "0.1.0",
+  "perl": "6.d",
+  "authors": [
+    "Anton Antonov"
+  ],
+  "auth": "zef:antononcube",
+  "depends": [],
+  "build-depends": [],
+  "test-depends": [],
+  "provides": {
+    "Proc::ZMQed": "lib/Proc/ZMQed.rakumod",
+    "Proc::ZMQed::Mathematica": "lib/Proc/ZMQed/Mathematica.rakumod",
+    "Proc::ZMQed::Python": "lib/Proc/ZMQed/Python.rakumod",
+    "Proc::ZMQed::R": "lib/Proc/ZMQed/R.rakumod",
+    "Proc::ZMQish": "lib/Proc/ZMQish.rakumod"
+  },
+  "resources": [],
+  "license": "Artistic-2.0",
+  "tags": [
+    "Mathematica",
+    "Proc",
+    "Python",
+    "R",
+    "WL",
+    "ZMQ",
+    "evaluation",
+    "evaluators",
+    "external"
+  ],
+  "api": "1",
+  "source-url": "https://github.com/antononcube/Raku-Proc-ZMQed"
+}
