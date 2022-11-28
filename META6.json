@@ -16,6 +16,7 @@
     "Proc::ZMQed": "lib/Proc/ZMQed.rakumod",
     "Proc::ZMQed::Abstraction": "lib/Proc/ZMQed/Abstraction.rakumod",
     "Proc::ZMQed::JavaScript": "lib/Proc/ZMQed/JavaScript.rakumod",
+    "Proc::ZMQed::Julia": "lib/Proc/ZMQed/Julia.rakumod",
     "Proc::ZMQed::Mathematica": "lib/Proc/ZMQed/Mathematica.rakumod",
     "Proc::ZMQed::Python": "lib/Proc/ZMQed/Python.rakumod",
     "Proc::ZMQed::R": "lib/Proc/ZMQed/R.rakumod",
@@ -25,6 +26,7 @@
   "license": "Artistic-2.0",
   "tags": [
     "JavaScript",
+    "Julia",
     "Mathematica",
     "Proc",
     "Python",
