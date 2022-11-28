@@ -1,6 +1,6 @@
 {
   "name": "Proc::ZMQed",
-  "description": "Proc::ZMQed provides external evaluators (Mathematica, Python, R, etc.) via ZMQ.",
+  "description": "Proc::ZMQed provides external evaluators (Mathematica, Python, R, Raku, etc.) via ZMQ.",
   "version": "0.1.0",
   "perl": "6.d",
   "authors": [
@@ -17,7 +17,8 @@
     "Proc::ZMQed::Abstraction": "lib/Proc/ZMQed/Abstraction.rakumod",
     "Proc::ZMQed::Mathematica": "lib/Proc/ZMQed/Mathematica.rakumod",
     "Proc::ZMQed::Python": "lib/Proc/ZMQed/Python.rakumod",
-    "Proc::ZMQed::R": "lib/Proc/ZMQed/R.rakumod"
+    "Proc::ZMQed::R": "lib/Proc/ZMQed/R.rakumod",
+    "Proc::ZMQed::Raku": "lib/Proc/ZMQed/Raku.rakumod"
   },
   "resources": [],
   "license": "Artistic-2.0",

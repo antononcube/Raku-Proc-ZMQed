@@ -6,3 +6,4 @@ use Proc::ZMQed::Abstraction;
 use Proc::ZMQed::Mathematica;
 use Proc::ZMQed::Python;
 use Proc::ZMQed::R;
+use Proc::ZMQed::Raku;
