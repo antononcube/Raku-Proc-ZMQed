@@ -157,10 +157,30 @@ class Proc_ZMQed_R {
 Proc_ZMQed_R --|> Proc_ZMQed_Abstraction
 
 
-class Failure.new(exception => X_NoSuchSymbol.new(symbol => "Proc_ZMQed_Raku"), backtrace => Backtrace.new) {
-  <<constant>>
+class Proc_ZMQed_Raku {
+  +$!codeOption
+  +$!context
+  +$!port
+  +$!proc
+  +$!receiver
+  +$!scriptName
+  +$!url
+  +BUILD()
+  +BUILDALL()
+  +codeOption()
+  +context()
+  +evaluate()
+  +make-code()
+  +port()
+  +proc()
+  +process-setup-lines()
+  +receiver()
+  +scriptName()
+  +start-proc()
+  +terminate()
+  +url()
 }
-Failure.new(exception => X_NoSuchSymbol.new(symbol => "Proc_ZMQed_Raku"), backtrace => Backtrace.new) --|> Nil
+Proc_ZMQed_Raku --|> Proc_ZMQed_Abstraction
 ```
 
 ------
