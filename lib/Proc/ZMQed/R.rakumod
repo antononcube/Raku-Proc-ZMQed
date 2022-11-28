@@ -22,14 +22,11 @@ constant $rServerCode = q:to/END/;
 
 END
 
-class  Proc::ZMQed::R does Proc::ZMQed::Abstraction {
+class Proc::ZMQed::R does Proc::ZMQed::Abstraction {
 
     #============================================================
     # creators
     #============================================================
-    #    method new($url, $port) {
-    #        return Proc::ZMQish.new('wolframscript', '-code', $url, $port) ;
-    #    }
 
     submethod BUILD(
             :$!scriptName = 'Rscript',
@@ -58,7 +55,6 @@ class  Proc::ZMQed::R does Proc::ZMQed::Abstraction {
     };
 
 
-
     #============================================================
     # process setup-lines
     #============================================================
@@ -69,9 +65,6 @@ class  Proc::ZMQed::R does Proc::ZMQed::Abstraction {
             when $_.isa(Whatever) { <Matrix tidyverse purrr magrittr> }
             when $_ ~~ Str { [$_,] }
         };
-
-        die 'The argument package is expected to be a string, a list of strings, or Whatever.'
-        unless !$setup-lines || $setup-lines ~~ List && $setup-lines.all ~~ Str;
 
         my Str $prepCode = '';
         if $setup-lines {
