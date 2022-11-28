@@ -47,7 +47,7 @@ class Proc::ZMQed::JavaScript does Proc::ZMQed::Abstraction {
     method make-code(Str :$prepCode = '', Bool :$proclaim = False) {
 
         my Str $resCode =
-                $prepCode ~ "\n" ~ $jsServerCode.subst('$url', $!url).subst('$port`', $!port);
+                $prepCode ~ "\n" ~ $jsServerCode.subst('$url', $!url).subst('$port', $!port);
 
         if !$proclaim {
             $resCode = $resCode.subst(/ ^^ \h* ['console.log'] .*? $$ /, ''):g
