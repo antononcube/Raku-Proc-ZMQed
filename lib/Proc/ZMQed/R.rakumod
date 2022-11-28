@@ -45,11 +45,10 @@ class  Proc::ZMQed::R does Proc::ZMQish {
     #============================================================
 
     #| Makes R's ZeroMQ infinite loop program.
-    method make-code(Str :$prepCode = '', Bool :$proclaim = False) is export {
+    method make-code(Str :$prepCode = '', Bool :$proclaim = False) {
 
         my Str $resCode =
-                $prepCode ~ "\n" ~ $rServerCode.subst('connect.socket(socket,"$url:$port");',
-                        "connect.socket(socket,\"$!url:$!port\");");
+                $prepCode ~ "\n" ~ $rServerCode.subst('connect.socket(socket,"$url:$port");', "connect.socket(socket,\"$!url:$!port\");");
 
         if !$proclaim {
             $resCode = $resCode.subst(/ ^^ \h* ['cat' | 'print'] .*? $$ /, ''):g
