@@ -55,11 +55,13 @@ Here is a corresponding flowchart:
 graph TD
   WE{{WolframEngine}}
   Raku{{Raku}}
-  CO[Create connection object]
+  CO[Create connection object<br>ZMQ sockets]
   SC[Send symbolic computation to WE]
-  PR[Replace symbols with values]
+  PR[Replace symbols with values<br>and evaluate]
   CO --> SC --> PR
-  SC -.- |ZMQ|WE
+  SC -.- Raku
+  SC -.-> |ZMQ.send|WE
+  WE -.-> |ZMQ.recv|SC
   CO -.- Raku
   PR -.- |EVAL|Raku  
 ```
@@ -68,12 +70,12 @@ graph TD
 
 ## Implementation detail
 
-There is a general role "Proc::ZMQish" that combines the design patterns 
+There is a general role "Proc::ZMQed::Abstraction" that combines the design patterns 
 Builder, Template Method, and Strategy. Here is the corresponding UML diagram:
 
 ```perl6, output-lang=mermaid, output-prompt=NONE
 use UML::Translators;
-to-uml-spec(<Proc::ZMQish Proc::ZMQed::Mathematica Proc::ZMQed::Python Proc::ZMQed::R>, format=>'mermaid');
+to-uml-spec(<Proc::ZMQed::Abstraction Proc::ZMQed::Mathematica Proc::ZMQed::Python Proc::ZMQed::R Proc::ZMQed::Raku>, format=>'mermaid');
 ```
 ```mermaid
 classDiagram
@@ -100,7 +102,7 @@ class Proc_ZMQed_Mathematica {
   +terminate()
   +url()
 }
-Proc_ZMQed_Mathematica --|> Proc_ZMQish
+Proc_ZMQed_Mathematica --|> Proc_ZMQed_Abstraction
 
 
 class Proc_ZMQed_Python {
@@ -126,7 +128,7 @@ class Proc_ZMQed_Python {
   +terminate()
   +url()
 }
-Proc_ZMQed_Python --|> Proc_ZMQish
+Proc_ZMQed_Python --|> Proc_ZMQed_Abstraction
 
 
 class Proc_ZMQed_R {
@@ -152,7 +154,13 @@ class Proc_ZMQed_R {
   +terminate()
   +url()
 }
-Proc_ZMQed_R --|> Proc_ZMQish
+Proc_ZMQed_R --|> Proc_ZMQed_Abstraction
+
+
+class Failure.new(exception => X_NoSuchSymbol.new(symbol => "Proc_ZMQed_Raku"), backtrace => Backtrace.new) {
+  <<constant>>
+}
+Failure.new(exception => X_NoSuchSymbol.new(symbol => "Proc_ZMQed_Raku"), backtrace => Backtrace.new) --|> Nil
 ```
 
 ------

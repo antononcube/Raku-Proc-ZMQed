@@ -51,11 +51,13 @@ Here is a corresponding flowchart:
 graph TD
   WE{{WolframEngine}}
   Raku{{Raku}}
-  CO[Create connection object]
+  CO[Create connection object<br>ZMQ sockets]
   SC[Send symbolic computation to WE]
-  PR[Replace symbols with values]
+  PR[Replace symbols with values<br>and evaluate]
   CO --> SC --> PR
-  SC -.- |ZMQ|WE
+  SC -.- Raku
+  SC -.-> |ZMQ.send|WE
+  WE -.-> |ZMQ.recv|SC
   CO -.- Raku
   PR -.- |EVAL|Raku  
 ```
@@ -64,12 +66,12 @@ graph TD
 
 ## Implementation detail
 
-There is a general role "Proc::ZMQish" that combines the design patterns 
+There is a general role "Proc::ZMQed::Abstraction" that combines the design patterns 
 Builder, Template Method, and Strategy. Here is the corresponding UML diagram:
 
 ```perl6, output-lang=mermaid, output-prompt=NONE
 use UML::Translators;
-to-uml-spec(<Proc::ZMQish Proc::ZMQed::Mathematica Proc::ZMQed::Python Proc::ZMQed::R>, format=>'mermaid');
+to-uml-spec(<Proc::ZMQed::Abstraction Proc::ZMQed::Mathematica Proc::ZMQed::Python Proc::ZMQed::R Proc::ZMQed::Raku>, format=>'mermaid');
 ```
 
 ------
