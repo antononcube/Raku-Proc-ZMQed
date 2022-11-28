@@ -3,7 +3,7 @@ use v6.d;
 use Net::ZMQ4;
 use Net::ZMQ4::Constants;
 
-role Proc::ZMQish {
+role Proc::ZMQed::Abstraction {
 
     has Str $.scriptName = 'raku';
     has Str $.codeOption = '-e';

@@ -1,6 +1,6 @@
 use v6.d;
 
-use Proc::ZMQish;
+use Proc::ZMQed::Abstraction;
 
 constant $pythonServerCode = q:to/END/;
 import logging
@@ -22,7 +22,7 @@ while True:
 END
 
 class Proc::ZMQed::Python
-        does Proc::ZMQish {
+        does Proc::ZMQed::Abstraction {
 
     #============================================================
     # creators

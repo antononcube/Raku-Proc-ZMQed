@@ -1,6 +1,6 @@
 use v6.d;
 
-use Proc::ZMQish;
+use Proc::ZMQed::Abstraction;
 
 constant $wlServerCode = q:to/END/;
 socket = SocketConnect["$url:$port", "ZMQ_REP"]
@@ -17,7 +17,7 @@ While[True,
 END
 
 class Proc::ZMQed::Mathematica
-        does Proc::ZMQish {
+        does Proc::ZMQed::Abstraction {
 
     #============================================================
     # creators

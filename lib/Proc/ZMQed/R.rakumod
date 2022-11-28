@@ -1,6 +1,6 @@
 use v6.d;
 
-use Proc::ZMQish;
+use Proc::ZMQed::Abstraction;
 
 #===========================================================
 # Make R code
@@ -22,7 +22,7 @@ constant $rServerCode = q:to/END/;
 
 END
 
-class  Proc::ZMQed::R does Proc::ZMQish {
+class  Proc::ZMQed::R does Proc::ZMQed::Abstraction {
 
     #============================================================
     # creators
