@@ -32,7 +32,7 @@ class Proc::ZMQed::R does Proc::ZMQed::Abstraction {
             :$!scriptName = 'Rscript',
             :$!codeOption = '-e',
             :$!url = 'tcp://127.0.0.1',
-            :$!port = '556',
+            :$!port = '5556',
             :$!proc = Nil,
             :$!context = Nil,
             :$!receiver = Nil) {}

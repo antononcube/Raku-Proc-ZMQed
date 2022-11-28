@@ -39,7 +39,7 @@ class Proc::ZMQed::Raku does Proc::ZMQed::Abstraction {
             :$!scriptName = 'raku',
             :$!codeOption = '-e',
             :$!url = 'tcp://127.0.0.1',
-            :$!port = '558',
+            :$!port = '5558',
             :$!proc = Nil,
             :$!context = Nil,
             :$!receiver = Nil) {}
