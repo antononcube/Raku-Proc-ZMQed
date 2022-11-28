@@ -9,21 +9,22 @@ use Proc::ZMQed::Abstraction;
 constant $rakuServerCode = q:to/END/;
 use Net::ZMQ4;
 use Net::ZMQ4::Constants;
-use Text::CodeProcessing::REPLSandbox;
-use Text::CodeProcessing;
-sub MAIN(Str :$url = '`URL`', Str :$port = '`Port`', Str :$rakuOutputPrompt = '`OutputPrompt`', Str :$rakuErrorPrompt = '`ErrorPrompt`') {
-    # Socket to talk to clients
-    my Net::ZMQ4::Context $context .= new;
-    my Net::ZMQ4::Socket $responder .= new($context, ZMQ_REP);
-    $responder.connect("$url:$port");
-    ## Create a sandbox
-    my $sandbox = Text::CodeProcessing::REPLSandbox.new();
-    while (1) {
-        my $message = $responder.receive();
-        say "Received : { $message.data-str }";
-        my $res = CodeChunkEvaluate($sandbox, $message.data-str, $rakuOutputPrompt, $rakuErrorPrompt);
-        $responder.send($res);
-    }
+
+my $url = '`URL`';
+my $port = '`Port`';
+
+my Net::ZMQ4::Context $context .= new;
+my Net::ZMQ4::Socket $responder .= new($context, ZMQ_REP);
+$responder.connect("$url:$port");
+
+loop {
+    my $message = $responder.receive();
+    note "Received : { $message.data-str }";
+    use MONKEY-SEE-NO-EVAL;
+    my $res = EVAL($message.data-str);
+    $responder.send($res.raku);
+    note "Sent: {$res.gist}";
+    $message.close
 }
 
 END
@@ -51,13 +52,11 @@ class Proc::ZMQed::Raku does Proc::ZMQed::Abstraction {
     method make-code(Str :$prepCode = '', Bool :$proclaim = False) {
 
         my Str $resCode =
-                $prepCode ~ "\n" ~ $rakuServerCode.subst('`URL`', $!url).subst('`Port`', $!port).subst('`OutputPrompt`','').subst('`ErrorPrompt`','#ERR:');
+                $prepCode ~ "\n" ~ $rakuServerCode.subst('`URL`', $!url).subst('`Port`', $!port);
 
         if !$proclaim {
-            $resCode = $resCode.subst(/ ^^ \h* ['say' | 'put'] .*? $$ /, ''):g
+            $resCode = $resCode.subst(/ ^^ \h* ['say' | 'put' | 'note'] .*? $$ /, ''):g
         }
-
-        note $resCode;
 
         $resCode
     };
