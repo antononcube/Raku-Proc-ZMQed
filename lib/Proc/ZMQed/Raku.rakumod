@@ -19,11 +19,11 @@ $responder.connect("$url:$port");
 
 loop {
     my $message = $responder.receive();
-    note "Received : { $message.data-str }";
+    warn "Received : { $message.data-str }";
     use MONKEY-SEE-NO-EVAL;
     my $res = EVAL($message.data-str);
     $responder.send($res.raku);
-    note "Sent: {$res.gist}";
+    warn "Sent: {$res.gist}";
     $message.close
 }
 
@@ -55,7 +55,7 @@ class Proc::ZMQed::Raku does Proc::ZMQed::Abstraction {
                 $prepCode ~ "\n" ~ $rakuServerCode.subst('`URL`', $!url).subst('`Port`', $!port);
 
         if !$proclaim {
-            $resCode = $resCode.subst(/ ^^ \h* ['say' | 'put' | 'note'] .*? $$ /, ''):g
+            $resCode = $resCode.subst(/ ^^ \h* ['say' | 'put' | 'note' | 'warn'] .*? $$ /, ''):g
         }
 
         $resCode
