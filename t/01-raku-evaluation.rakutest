@@ -1,0 +1,23 @@
+use v6.d;
+use Test;
+
+use lib '.';
+use lib './lib';
+
+use Proc::ZMQed::Raku;
+
+plan 3;
+
+my Proc::ZMQed::Raku $rakuProc;
+ok $rakuProc .= new(url => 'tcp://127.0.0.1', port => '5556', scriptName => $*HOME ~ '/.rakubrew/shims/raku');
+
+# Using ok test on this line produces a fail. So, how to test it is ok?
+$rakuProc.start-proc(setup-lines => Empty, :!proclaim);
+
+my $res = (30,40,2)>>.sqrt.List;
+
+is-deeply $rakuProc.evaluate('(30,40,2)>>.sqrt'), $res.raku;
+
+ok $rakuProc.terminate;
+
+done-testing;
