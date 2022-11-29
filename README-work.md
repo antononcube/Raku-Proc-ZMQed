@@ -10,7 +10,23 @@ With this package, "Proc::ZMQed", we can use Mathematica in Raku sessions.
 
 -----
 
-## Mathematica 
+## Installation
+
+From GitHub:
+
+```
+zef install https://github.com/antononcube/Raku-Proc-ZMQed.git
+```
+
+From [Zef ecosystem](https://raku.land):
+
+```
+zef install Proc::ZMQed
+```
+
+-----
+
+## Usage example: symbolic computation with Mathematica
 
 *...aka Wolfram Language (WL).*
 
@@ -23,7 +39,7 @@ The following examples shows:
 - Getting the symbolic result and evaluating it as a Raku expression.
 
 ```perl6
-use Proc::ZMQed::Mathematica;
+use Proc::ZMQed;
 
 # Make object
 my Proc::ZMQed::Mathematica $wlProc .= new(url => 'tcp://127.0.0.1', port => '5550');
@@ -77,6 +93,68 @@ graph TD
 
 ------
 
+## Setup
+
+In this section we outline setup for different programming languages as "servers."
+
+Generally, there are two main elements to figure out:
+
+- What is the concrete Command Line Interface (CLI) name to use?
+
+  - And related code option. E.g. `julia -e` or `wolframscript -code`.
+  
+- Is ZMQ installed on the server system?
+
+
+The CLI names can be specified with the option `cli-name`.
+The code options can be specified with `code-option`.
+
+### Julia
+
+In order to setup ZMQ computations with Julia start Julia and execute the commands:
+
+```julia
+using Pkg
+Pkg.add("ZMQ")
+Pkg.add("JSON")
+Pkg.add("LinearAlgebra")
+```
+
+(Also, see the instructions at ["Configure Julia for ExternalEvaluate"](https://reference.wolfram.com/language/workflow/ConfigureJuliaForExternalEvaluate.html).) 
+
+By default "Proc::ZMQed::Julia" uses the CLI name `julia`. Here is an alternative setup:
+
+```{perl6, eval=FALSE}
+my Proc::ZMQed::Julia $juliaProc .= new(url => 'tcp://127.0.0.1',
+                                        port => '5560',
+                                        cli-name => '/Applications/Julia-1.8.app/Contents/Resources/julia/bin/julia');
+```
+
+### Mathematica
+
+Install [Wolfram Engine (WE)](https://www.wolfram.com/engine/). (As it was mentioned above, WE is free for developers. WE has ZMQ functionalities "out of the box.")
+
+Make sure `wolframscript` is installed. (This is the CLI name used with "Proc::ZMQed::Mathematica".)
+
+### Python
+
+Install the ZMQ library ["PyZMQ"](https://pypi.org/project/pyzmq/). For example, with:
+
+```
+python -m pip install --user pyzmq
+```
+
+By default "Proc::ZMQed::Python" uses the CLI name `python`.
+Here we connect to a Python virtual environment (made and used with miniforge).
+
+```{perl6, eval=FALSE}
+my Proc::ZMQed::Python $pythonProc .= new(url => 'tcp://127.0.0.1', 
+                                          port => '5554', 
+                                          cli-name => $*HOME ~ '/miniforge3/envs/SciPyCentric/bin/python');
+```
+
+------
+
 ## Implementation details
 
 There is a general role "Proc::ZMQed::Abstraction" that combines the design patterns 
@@ -95,6 +173,24 @@ subclasses. I have to say though, that my attempts to implement
 were very unsuccessful because of the half-implemented (or missing) polling functionalities in [ASp1].
 (See the comments [here](https://github.com/arnsholt/Net-ZMQ/blob/master/lib/Net/ZMQ4/Poll.pm6).)
 
+
+------
+
+## TODO
+
+1. [ ] TODO Robust, comprehensive ZMQ-related failures handling.
+
+2. [ ] TODO More robust ZMQ patterns. 
+
+   - Like the "Lazy Pirate" mentioned above.
+
+3. [ ] TODO Implement "Proc::ZMQed::Java".
+
+4. [ ] TODO Better message processing in "Proc::ZMQed::R". 
+
+5. [ ] TODO Verify that "Proc::ZMQed::JavaScript" is working.
+  
+   - Currently, I have problems install ZMQ in JavaScript.
 
 ------
 
