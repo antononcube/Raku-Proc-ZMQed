@@ -1,9 +1,6 @@
 #!/usr/bin/env raku
 use v6.d;
 
-use lib '.';
-use lib './lib';
-
 use Proc::ZMQed::JavaScript;
 
 my Proc::ZMQed::JavaScript $jsProc .= new(url => 'tcp://127.0.0.1', port => '5560');
