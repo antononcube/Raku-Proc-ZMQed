@@ -28,9 +28,9 @@ zef install Proc::ZMQed
 
 ## Usage example: symbolic computation with Mathematica
 
-*...aka Wolfram Language (WL).*
+*Mathematica is also known as Wolfram Language (WL).*
 
-The following examples shows:
+The following example shows:
 
 - Establishing connection to [Wolfram Engine](https://www.wolfram.com/engine/) (which is free for developers.)
 
