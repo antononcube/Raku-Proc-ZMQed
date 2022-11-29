@@ -1,11 +1,12 @@
 # Raku Proc::ZMQed
 
 This package, "Proc::ZMQed", provides external evaluators (Julia, Mathematica, Python, R, etc.) via 
-[ZerpMQ (ZMQ)](https://zeromq.org).
+[ZeroMQ (ZMQ)](https://zeromq.org).
 
 Functionality-wise, a closely related Raku package is 
 ["Text::CodeProcessing"](https://raku.land/zef:antononcube/Text::CodeProcessing), 
-[AAp1].
+[AAp1]. For example, Raku can be used in Mathematica notebooks with [AAp1] and [AAp2]; see [AA1] for more details.
+With this package, "Proc::ZMQed", we can use Mathematica in Raku sessions. 
 
 -----
 
@@ -99,12 +100,25 @@ were very unsuccessful because of the half-implemented (or missing) polling func
 
 ## References
 
+### Articles
+
+[AA1] Anton Antonov,
+["Connecting Mathematica and Raku"](https://rakuforprediction.wordpress.com/2021/12/30/connecting-mathematica-and-raku/),
+(2021),
+[RakuForPrediction at WordPress]([https://rakuforprediction.wordpress.com/).
+
+
 ### Packages
 
 [AAp1] Anton Antonov
 [Text::CodeProcessing Raku package](https://github.com/antononcube/Raku-Text-CodeProcessing),
 (2021-2022),
 [GitHub/antononcube](https://github.com/antononcube).
+
+[AAp2] Anton Antonov,
+[RakuMode Mathematica package](https://github.com/antononcube/ConversationalAgents/blob/master/Packages/WL/RakuMode.m),
+(2020-2021),
+[ConversationalAgents at GitHub/antononcube](https://github.com/antononcube/ConversationalAgents).
 
 [ASp1] Arne Skjærholt,
 [Net::ZMQ](https://github.com/arnsholt/Net-ZMQ),
