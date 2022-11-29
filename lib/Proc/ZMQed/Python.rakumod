@@ -29,8 +29,8 @@ class Proc::ZMQed::Python
     #============================================================
 
     submethod BUILD(
-            :$!scriptName = 'python',
-            :$!codeOption = '-c',
+            :$!cli-name = 'python',
+            :$!code-option = '-c',
             :$!url = 'tcp://127.0.0.1',
             :$!port = '5552',
             :$!proc = Nil,

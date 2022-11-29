@@ -5,8 +5,8 @@ use Net::ZMQ4::Constants;
 
 role Proc::ZMQed::Abstraction {
 
-    has Str $.scriptName = 'raku';
-    has Str $.codeOption = '-e';
+    has Str $.cli-name = 'raku';
+    has Str $.code-option = '-e';
     has Str $.url = 'tcp://127.0.0.1';
     has Str $.port = '5555';
 
@@ -22,8 +22,8 @@ role Proc::ZMQed::Abstraction {
 #    }
 
     submethod BUILD(
-            :$!scriptName = 'raku',
-            :$!codeOption = '-e',
+            :$!cli-name = 'raku',
+            :$!code-option = '-e',
             :$!url = 'tcp://127.0.0.1',
             :$!port = '5555',
             :$!proc = Nil,
@@ -90,12 +90,12 @@ role Proc::ZMQed::Abstraction {
         # Launch the script with ZMQ socket
         if $!url and $!port {
 
-            warn "Launching $!scriptName with ZMQ socket..." if $proclaim;
+            warn "Launching $!cli-name with ZMQ socket..." if $proclaim;
 
             # Launch script with ZMQ socket
             $!proc = Proc::Async.new:
-                    $!scriptName,
-                    $!codeOption,
+                    $!cli-name,
+                    $!code-option,
                     self.make-code(:$!url, :$!port, :$prepCode, :$proclaim);
 
             $!proc.start;

@@ -36,8 +36,8 @@ class Proc::ZMQed::Raku does Proc::ZMQed::Abstraction {
     #============================================================
 
     submethod BUILD(
-            :$!scriptName = 'raku',
-            :$!codeOption = '-e',
+            :$!cli-name = 'raku',
+            :$!code-option = '-e',
             :$!url = 'tcp://127.0.0.1',
             :$!port = '5558',
             :$!proc = Nil,

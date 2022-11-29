@@ -35,8 +35,8 @@ class Proc::ZMQed::Julia does Proc::ZMQed::Abstraction {
     #============================================================
 
     submethod BUILD(
-            :$!scriptName = 'julia',
-            :$!codeOption = '-e',
+            :$!cli-name = 'julia',
+            :$!code-option = '-e',
             :$!url = 'tcp://127.0.0.1',
             :$!port = '5562',
             :$!proc = Nil,

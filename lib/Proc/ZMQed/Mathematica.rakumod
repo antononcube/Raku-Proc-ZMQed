@@ -27,8 +27,8 @@ class Proc::ZMQed::Mathematica
 #    }
 
     submethod BUILD(
-            :$!scriptName = 'wolframscript',
-            :$!codeOption = '-code',
+            :$!cli-name = 'wolframscript',
+            :$!code-option = '-code',
             :$!url = 'tcp://127.0.0.1',
             :$!port = '5555',
             :$!proc = Nil,

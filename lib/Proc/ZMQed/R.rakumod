@@ -29,8 +29,8 @@ class Proc::ZMQed::R does Proc::ZMQed::Abstraction {
     #============================================================
 
     submethod BUILD(
-            :$!scriptName = 'Rscript',
-            :$!codeOption = '-e',
+            :$!cli-name = 'Rscript',
+            :$!code-option = '-e',
             :$!url = 'tcp://127.0.0.1',
             :$!port = '5556',
             :$!proc = Nil,

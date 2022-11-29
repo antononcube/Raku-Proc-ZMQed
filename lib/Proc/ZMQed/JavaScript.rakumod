@@ -31,8 +31,8 @@ class Proc::ZMQed::JavaScript does Proc::ZMQed::Abstraction {
     #============================================================
 
     submethod BUILD(
-            :$!scriptName = 'node',
-            :$!codeOption = '-e',
+            :$!cli-name = 'node',
+            :$!code-option = '-e',
             :$!url = 'tcp://127.0.0.1',
             :$!port = '5560',
             :$!proc = Nil,
