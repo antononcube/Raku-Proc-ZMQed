@@ -117,7 +117,6 @@ In order to setup ZMQ computations with Julia start Julia and execute the comman
 using Pkg
 Pkg.add("ZMQ")
 Pkg.add("JSON")
-Pkg.add("LinearAlgebra")
 ```
 
 (Also, see the instructions at ["Configure Julia for ExternalEvaluate"](https://reference.wolfram.com/language/workflow/ConfigureJuliaForExternalEvaluate.html).) 
