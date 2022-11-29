@@ -154,7 +154,8 @@ python -m pip install --user pyzmq
 ```
 
 By default "Proc::ZMQed::Python" uses the CLI name `python`.
-Here we connect to a Python virtual environment (made and used with miniforge).
+Here we connect to a Python virtual environment (made and used with 
+[miniforge](https://github.com/conda-forge/miniforge)):
 
 ```{perl6, eval=FALSE}
 my Proc::ZMQed::Python $pythonProc .= new(url => 'tcp://127.0.0.1', 
@@ -166,8 +167,17 @@ my Proc::ZMQed::Python $pythonProc .= new(url => 'tcp://127.0.0.1',
 
 ## Implementation details
 
-There is a general role "Proc::ZMQed::Abstraction" that combines the design patterns 
-Builder, Template Method, and Strategy. Here is the corresponding UML diagram:
+The package architecture is Object-Oriented Programming (OOP) based and it is a combination of OOP the design patterns 
+Builder, Template Method, and Strategy.
+
+The package has a general role "Proc::ZMQed::Abstraction" that plays Abstract class in Template method. 
+The concrete programming language of the classes provide concrete operations for:
+
+- ZMQ-server side code
+
+- Processing of setup code lines
+
+Here is the corresponding UML diagram:
 
 ```perl6, output-lang=mermaid, output-prompt=NONE
 use UML::Translators;
