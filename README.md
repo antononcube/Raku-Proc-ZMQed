@@ -5,7 +5,7 @@ This package, "Proc::ZMQed", provides external evaluators (Julia, Mathematica, P
 
 Functionality-wise, a closely related Raku package is 
 ["Text::CodeProcessing"](https://raku.land/zef:antononcube/Text::CodeProcessing), 
-[AAp1]. For example, Raku can be used in Mathematica notebooks with [AAp1] and [AAp2]; see [AA1] for more details.
+[AAp1]. For example, Raku can be used in Mathematica sessions (i.e. notebooks) with [AAp1] and [AAp2]; see [AA1] for more details.
 With this package, "Proc::ZMQed", we can use Mathematica in Raku sessions. 
 
 -----
@@ -82,23 +82,24 @@ $wlProc.terminate;
 ```
 
 **Remark:** Mathematica can have variables that start with `$`, which is handy if we want to
-tre WE results as Raku expressions.
+treat WE results as Raku expressions.
 
 Here is a corresponding flowchart:
 
 ```mermaid
 graph TD
-  WE{{WolframEngine}}
+  WE{{Wolfram Engine}}
   Raku{{Raku}}
-  CO[Create connection object<br>ZMQ sockets]
-  SC[Send symbolic computation to WE]
-  PR[Replace symbols with values<br>and evaluate]
-  CO --> SC --> PR
+  CO["Create connection object<br>(ZMQ sockets)"]
+  SC[Send symbolic computation<br>to Wolfram Engine]
+  AV[Assign values to symbols]
+  ES[Evaluate WE output string]
+  CO --> SC --> AV --> ES
   SC -.- Raku
   SC -.-> |ZMQ.send|WE
   WE -.-> |ZMQ.recv|SC
   CO -.- Raku
-  PR -.- |EVAL|Raku  
+  ES -.- |EVAL|Raku  
 ```
 
 ------
@@ -167,7 +168,7 @@ my Proc::ZMQed::Python $pythonProc .= new(url => 'tcp://127.0.0.1',
 
 ## Implementation details
 
-The package architecture is Object-Oriented Programming (OOP) based and it is a combination of OOP the design patterns 
+The package architecture is Object-Oriented Programming (OOP) based and it is a combination of the OOP design patterns 
 Builder, Template Method, and Strategy.
 
 The package has a general role "Proc::ZMQed::Abstraction" that plays Abstract class in Template method. 
