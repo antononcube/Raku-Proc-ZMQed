@@ -89,6 +89,7 @@ graph TD
   SC -.-> |ZMQ.send|WE
   WE -.-> |ZMQ.recv|SC
   CO -.- Raku
+  AV -.- Raku
   ES -.- |EVAL|Raku  
 ```
 
