@@ -1,7 +1,7 @@
 {
   "name": "Proc::ZMQed",
   "description": "Proc::ZMQed provides external evaluators (Mathematica, Python, R, Raku, etc.) via ZMQ.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "perl": "6.d",
   "authors": [
     "Anton Antonov"
