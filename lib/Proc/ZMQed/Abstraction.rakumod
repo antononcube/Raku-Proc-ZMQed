@@ -115,10 +115,9 @@ role Proc::ZMQed::Abstraction {
     # start-proc
     #============================================================
 
-    method terminate() {
+    method terminate($signal = SIGHUP) {
         $!receiver.close;
         $!context.shutdown;
-        $!proc.kill;
-        $!proc.kill: SIGKILL;
+        $!proc.kill($signal);
     }
 }
