@@ -58,6 +58,10 @@ role Proc::ZMQed::Abstraction {
         return $message.data-str;
     }
 
+    #| Evaluate commands. (Synonym of the method evaluate.)
+    method eval(Str $commands --> Str) {
+        return self.evaluate($commands);
+    }
 
     #============================================================
     # process setup-lines
