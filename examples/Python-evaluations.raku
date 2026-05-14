@@ -8,11 +8,11 @@ use Proc::ZMQed::Python;
 # Replace the script name with preferred path.
 my Proc::ZMQed::Python $pythonProc .= new(url => 'tcp://127.0.0.1',
                                           port => '5554',
-                                          cli-name => $*HOME ~ '/miniforge3/envs/SciPyCentric/bin/python');
+                                          cli-name => $*HOME ~ '/miniforge3/bin/python');
 
 $pythonProc.start-proc(setup-lines => Whatever):proclaim;
 
 my $pyRes = $pythonProc.evaluate('[math.sqrt(x) for x in list(range(12))]');
-say $pyRes;
+say (:$pyRes);
 
 $pythonProc.terminate;
